@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pulse Connect</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Custom Styles */
+        .header_section {
+            transition: background-color 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Softer shadow for depth */
+        }
+
+        .navbar-brand span {
+            transition: transform 0.3s ease, color 0.3s ease; /* Smooth transition for brand */
+            display: inline-block; /* Needed for transform */
+        }
+
+        .navbar-brand:hover span {
+            transform: scale(1.05); /* Slight zoom on hover */
+            color: #ffffff !important; /* Ensure it stays white, or choose a highlight */
+        }
+
+        .navbar-nav .nav-item .nav-link {
+            position: relative; /* For the underline pseudo-element */
+            transition: color 0.3s ease, transform 0.3s ease;
+            padding-top: 0.8rem; /* Adjust padding for better spacing */
+            padding-bottom: 0.8rem;
+            margin-left: 5px; /* Spacing between nav items */
+            margin-right: 5px;
+        }
+
+        .navbar-nav .nav-item .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 5px; /* Position of the underline */
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #ffffff; /* Underline color */
+            transition: width 0.3s ease-out; /* Animation for underline */
+        }
+
+        .navbar-nav .nav-item .nav-link:hover,
+        .navbar-nav .nav-item .nav-link:focus { /* Added focus for accessibility */
+            color: #f8f9fa !important; /* Slightly brighter white on hover */
+            transform: translateY(-2px); /* Subtle lift effect */
+        }
+
+        .navbar-nav .nav-item .nav-link:hover::after {
+            width: 70%; /* Width of the underline on hover */
+        }
+
+        /* Style for the active link */
+        .navbar-nav .nav-item.active .nav-link {
+            color: #ffffff !important;
+            font-weight: 600; /* Make active link bolder */
+        }
+
+        .navbar-nav .nav-item.active .nav-link::after {
+            width: 70%; /* Persistent underline for active item */
+            background-color: #ffc107; /* Different color for active underline, or keep white */
+        }
+
+        /* Special Admin Button Styling */
+        .nav-link.btn-admin-custom {
+            background-color: #fff; /* Original background */
+            color: #d32f2f !important; /* Original text color */
+            border-radius: 20px; /* More rounded */
+            font-weight: 600;
+            transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .nav-link.btn-admin-custom:hover,
+        .nav-link.btn-admin-custom:focus {
+            background-color: #c02424; /* Darker red on hover */
+            color: #ffffff !important; /* White text on hover */
+            transform: translateY(-2px) scale(1.03); /* Lift and slightly enlarge */
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+
+        /* Navbar toggler focus state - for accessibility */
+        .navbar-toggler:focus {
+            outline: none;
+            box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.5); /* Whiteish focus ring */
+        }
+
+        /* Adjusting the brand text size and alignment slightly if needed */
+        .navbar-brand .brand-text {
+            font-size: 22px;
+            vertical-align: middle; /* Better align with potential icon */
+        }
+        .navbar-brand .blood-drop {
+            font-size: 28px; /* Make blood drop slightly larger */
+            vertical-align: middle;
+            margin-right: 5px; /* Space between icon and text */
+        }
+
+    </style>
+</head>
+<body>
+
+<header class="header_section" style="background-color: #d32f2f">
+  <div class="container">
+    <nav class="navbar navbar-expand-lg navbar-dark">
+      <a
+        class="navbar-brand font-weight-bold text-white"
+        href="{% url 'index' %}"
+      >
+        <span class="blood-drop">🩸</span><span class="brand-text">Pulse Connect</span>
+      </a>
+
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div
+        class="collapse navbar-collapse justify-content-end"
+        id="navbarSupportedContent"
+      >
+        <ul class="navbar-nav ml-auto text-uppercase">
+          <li class="nav-item {% if request.path == '/' %}active{% endif %}">
+            <a class="nav-link text-white" href="{% url 'index' %}">Home</a>
+          </li>
+          <li class="nav-item {% if request.path == '/aboutus/' %}active{% endif %}"> 
+            <a class="nav-link text-white" href="{% url 'aboutus' %}">About</a>
+          </li>
+          <li class="nav-item {% if request.path == '/contactus/' %}active{% endif %}"> 
+            <a class="nav-link text-white" href="{% url 'contactus' %}"
+              >Contact Us</a
+            >
+          </li>
+          <li class="nav-item {% if request.path == '/donorsignup/' %}active{% endif %}"> 
+            <a class="nav-link text-white" href="{% url 'donorsignup' %}"
+              >Donor Signup</a
+            >
+          </li>
+          <li class="nav-item {% if request.path == '/search-donor/' %}active{% endif %}"> 
+            <a class="nav-link text-white" href="{% url 'search-donor' %}"
+              >Search Donor</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link text-white btn btn-sm px-3 ml-2 btn-admin-custom" /* Replaced inline style with a class */
+              href="{% url 'login' %}"
+              >Sign In</a
+            >
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,310 @@
+{% extends 'userbase.html' %} {% load static %} {% block content %}
+<style>
+  .registration_section {
+    background-color: #f8f9fa;
+    padding-top: 60px;
+    padding-bottom: 60px;
+  }
+
+  .registration_container {
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .registration_container h2 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+
+  .registration_container h2 span {
+    color: #d32f2f;
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+  }
+
+  .form-group label {
+    display: block;
+    font-weight: 500;
+    color: #555;
+    margin-bottom: 8px;
+  }
+
+  .form-control {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    font-size: 1rem;
+    color: #495057;
+    background-color: #fff;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .form-control:focus {
+    border-color: #d32f2f;
+    box-shadow: 0 0 0 0.2rem rgba(211, 47, 47, 0.25);
+    outline: none;
+  }
+
+  textarea.form-control {
+    min-height: 120px;
+  }
+
+  /* Fix for specific fields: Profile Picture, Blood Group, Gender */
+  input[type="file"].form-control,
+  select.form-control {
+    font-size: 1.05rem;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    height: auto;
+  }
+
+  .btn-register {
+    background-color: #d32f2f;
+    color: #ffffff;
+    border: none;
+    padding: 12px 30px;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    width: 100%;
+    display: block;
+    text-align: center;
+  }
+
+  .btn-register:hover {
+    background-color: #a72020;
+    transform: translateY(-2px);
+  }
+
+  .auth-links {
+    margin-top: 25px;
+    text-align: center;
+  }
+
+  .auth-links a {
+    color: #007bff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    display: inline-block;
+    margin: 0 10px;
+  }
+
+  .auth-links a:hover {
+    color: #0056b3;
+    text-decoration: underline;
+  }
+
+  .alert {
+    font-size: 0.95rem;
+    padding: 12px 20px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+  }
+
+  .alert .close {
+    font-size: 1.5rem;
+    color: inherit;
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+  }
+
+  .alert .close:hover {
+    opacity: 1;
+  }
+</style>
+
+<section class="registration_section">
+  <div class="container">
+    <div class="registration_container">
+      <h2>Donor <span>Registration</span></h2>
+
+      {% if messages %} {% for message in messages %}
+      <div
+        class="alert alert-{{ message.tags }} alert-dismissible fade show"
+        role="alert"
+      >
+        {{ message }}
+        <button
+          type="button"
+          class="close"
+          data-dismiss="alert"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      {% endfor %} {% endif %}
+
+      <form
+        method="POST"
+        enctype="multipart/form-data"
+        action="{% url 'donorsignup' %}"
+      >
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="pic">Profile Picture</label>
+          <input
+            type="file"
+            class="form-control"
+            id="pic"
+            name="pic"
+            required
+            accept="image/*"
+          />
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="first_name">First Name</label>
+            <input
+              type="text"
+              class="form-control"
+              id="first_name"
+              placeholder="First Name"
+              name="first_name"
+              required
+            />
+          </div>
+          <div class="form-group col-md-6">
+            <label for="last_name">Last Name</label>
+            <input
+              type="text"
+              class="form-control"
+              id="last_name"
+              placeholder="Last Name"
+              name="last_name"
+              required
+            />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input
+            type="email"
+            class="form-control"
+            id="email"
+            placeholder="your.email@example.com"
+            name="email"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input
+            type="text"
+            class="form-control"
+            id="username"
+            placeholder="Choose a username"
+            name="username"
+            required
+          />
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="mobno">Mobile Number</label>
+            <input
+              type="text"
+              class="form-control"
+              id="mobno"
+              placeholder="e.g., 1950xxxxxxx"
+              name="mobno"
+              maxlength="15"
+              title="Please enter a valid 10-digit Chinese mobile number"
+              required
+            />
+          </div>
+          <div class="form-group col-md-6">
+            <label for="age">Age</label>
+            <input
+              type="number"
+              class="form-control"
+              id="age"
+              placeholder="Your age (e.g., 25)"
+              name="age"
+              min="18"
+              max="65"
+              required
+              title="Age must be between 18 and 65"
+            />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="bg_id">Blood Group</label>
+            <select class="form-control" id="bg_id" name="bg_id" required>
+              <option value="" disabled selected>Choose Blood Group</option>
+              {% for i in bg %}
+              <option value="{{ i.id }}">{{ i.bloodgroup }}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="form-group col-md-6">
+            <label for="gender">Gender</label>
+            <select class="form-control" id="gender" name="gender" required>
+              <option value="" disabled selected>Select Gender</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="address">Address</label>
+          <textarea
+            class="form-control"
+            id="address"
+            name="address"
+            rows="4"
+            placeholder="Your full address"
+            required
+          ></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input
+            type="password"
+            class="form-control"
+            id="password"
+            placeholder="Choose a strong password"
+            name="password"
+            required
+          />
+        </div>
+
+        <div class="form-group mt-4">
+          <button type="submit" class="btn btn-register">Register</button>
+        </div>
+
+        <div class="auth-links">
+          <a href="{% url 'login' %}"
+            ><i class="fa fa-sign-in" aria-hidden="true"></i> Already
+            Registered? Login</a
+          >
+          <br class="d-sm-none" />
+          <a href="{% url 'index' %}"
+            ><i class="fa fa-home" aria-hidden="true"></i> Back to Home Page</a
+          >
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+{% endblock %}

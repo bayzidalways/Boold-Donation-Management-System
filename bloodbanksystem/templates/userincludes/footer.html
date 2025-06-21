@@ -1,0 +1,257 @@
+{% comment %} Assuming userbase.html or your base template links to: - Bootstrap
+CSS - Font Awesome CSS (for icons like <i class="fa fa-map-marker"></i>) {%
+endcomment %} {% load static %} {% comment %} Though not used in this snippet,
+good practice if you add images later {% endcomment %}
+
+<style>
+  .footer_section {
+    background-color: #222529; /* Dark charcoal background */
+    color: #adb5bd; /* Light grey text for readability */
+    padding: 60px 0 20px 0; /* More padding at top, less at bottom */
+    font-size: 0.95rem;
+  }
+
+  .footer_section h4 {
+    color: #ffffff; /* White headings */
+    margin-bottom: 25px;
+    font-size: 1.5rem; /* Slightly larger heading */
+    font-weight: 600;
+    position: relative;
+    padding-bottom: 10px;
+  }
+  /* Underline for headings */
+  .footer_section h4::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 50px;
+    height: 3px;
+    background-color: #d32f2f; /* Primary red accent */
+  }
+
+  .footer_contact .contact_link_box a {
+    display: flex; /* Use flex for icon and text alignment */
+    align-items: center;
+    color: #adb5bd;
+    margin-bottom: 15px;
+    text-decoration: none;
+    transition: color 0.3s ease, padding-left 0.3s ease;
+  }
+
+  .footer_contact .contact_link_box a:hover {
+    color: #ffffff; /* White on hover */
+    padding-left: 5px; /* Subtle shift on hover */
+  }
+
+  .footer_contact .contact_link_box a i {
+    font-size: 1.2rem;
+    color: #d32f2f; /* Primary red for icons */
+    margin-right: 12px;
+    width: 20px; /* Ensure consistent icon spacing */
+    text-align: center;
+  }
+  .footer_contact .contact_link_box a span {
+    flex-grow: 1;
+  }
+
+  .footer_social {
+    margin-top: 25px;
+  }
+
+  .footer_social a {
+    display: inline-flex; /* Use flex for centering icon */
+    justify-content: center;
+    align-items: center;
+    color: #adb5bd;
+    width: 40px;
+    height: 40px;
+    border: 1px solid #495057; /* Subtle border */
+    border-radius: 50%;
+    margin-right: 10px;
+    text-decoration: none;
+    transition: color 0.3s ease, background-color 0.3s ease, transform 0.3s ease;
+  }
+
+  .footer_social a:hover {
+    color: #ffffff;
+    background-color: #d32f2f; /* Red background on hover */
+    border-color: #d32f2f;
+    transform: translateY(-3px); /* Slight lift effect */
+  }
+  .footer_social a i {
+    font-size: 1.1rem;
+  }
+
+  .footer_detail p {
+    line-height: 1.7;
+    color: #adb5bd; /* Ensure paragraph text color */
+  }
+
+  .footer_link_box .footer_links a {
+    display: block;
+    color: #adb5bd;
+    margin-bottom: 12px;
+    text-decoration: none;
+    transition: color 0.3s ease, padding-left 0.3s ease;
+    position: relative;
+  }
+
+  .footer_link_box .footer_links a::before {
+    /* Small marker for links */
+    content: "\f105"; /* Font Awesome angle-right icon */
+    font-family: "FontAwesome";
+    margin-right: 8px;
+    color: #d32f2f;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .footer_link_box .footer_links a:hover,
+  .footer_link_box .footer_links a.active {
+    /* Style active link similar to hover */
+    color: #ffffff;
+    padding-left: 10px; /* Increase padding to make space for icon if it appears */
+  }
+  .footer_link_box .footer_links a:hover::before,
+  .footer_link_box .footer_links a.active::before {
+    opacity: 1; /* Show icon on hover/active */
+  }
+
+  .footer-info {
+    text-align: center;
+    padding-top: 25px;
+    margin-top: 40px;
+    border-top: 1px solid #343a40; /* Darker border */
+    font-size: 0.9rem;
+  }
+
+  .footer-info p {
+    margin-bottom: 0;
+    color: #868e96; /* Slightly muted color for copyright */
+  }
+  .footer-info a {
+    /* If you add links in copyright */
+    color: #adb5bd;
+    text-decoration: none;
+  }
+  .footer-info a:hover {
+    color: #d32f2f;
+  }
+
+  /* Adjustments for the third column if it's narrower */
+  .footer_col.mx-auto.col-lg-2 .footer_link_box h4::after {
+    width: 30px; /* Shorter underline for narrower column heading */
+  }
+</style>
+
+<footer class="footer_section">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 col-lg-4 footer_col">
+        <div class="footer_contact">
+          <h4>Reach at..</h4>
+          <div class="contact_link_box">
+            <a
+              href="https://maps.google.com/?q=P-901, Noida, Uttar Pradesh"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <i class="fa fa-map-marker" aria-hidden="true"></i>
+              <span> Yangzhou University, Jiangsu Province, China </span>
+            </a>
+            <a href="tel:+86 19505274134">
+              <i class="fa fa-phone" aria-hidden="true"></i>
+              <span> Call +86 19505274134 </span>
+            </a>
+            <a href="mailto:bayzidalways@gmail.com">
+              <i class="fa fa-envelope" aria-hidden="true"></i>
+              <span> bayzidalways@gmail.com </span>
+            </a>
+          </div>
+        </div>
+        <div class="footer_social">
+          <a href="#" aria-label="Facebook">
+            <i class="fa fa-facebook" aria-hidden="true"></i>
+          </a>
+          <a href="#" aria-label="Twitter">
+            <i class="fa fa-twitter" aria-hidden="true"></i>
+          </a>
+          <a href="#" aria-label="LinkedIn">
+            <i class="fa fa-linkedin" aria-hidden="true"></i>
+          </a>
+          <a href="#" aria-label="Instagram">
+            <i class="fa fa-instagram" aria-hidden="true"></i>
+          </a>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4 footer_col">
+        <div class="footer_detail">
+          <h4>About Us</h4>
+          <p>
+            Our Blood Donor System is committed to connecting compassionate
+            donors with those in critical need. We strive to create a seamless,
+            supportive network for giving and receiving the gift of life.
+          </p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-2 mx-auto footer_col">
+        <div class="footer_link_box">
+          <h4>Quick Links</h4>
+          <div class="footer_links">
+            <a
+              class="{% if request.path == '/' %}active{% endif %}"
+              href="{% url 'index' %}"
+            >
+              Home
+            </a>
+            <a
+              class="{% if 'aboutus' in request.path %}active{% endif %}"
+              href="{% url 'aboutus' %}"
+            >
+              About
+            </a>
+            <a
+              class="{% if 'contactus' in request.path %}active{% endif %}"
+              href="{% url 'contactus' %}"
+            >
+              Contact Us
+            </a>
+            <a
+              class="{% if 'donor-list' in request.path or 'search-donor' in request.path %}active{% endif %}"
+              href="{% url 'search-donor' %}"
+            >
+              Search Donors
+            </a>
+            <a
+              class="{% if 'donorsignup' in request.path %}active{% endif %}"
+              href="{% url 'donorsignup' %}"
+            >
+              Donor Signup
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-info">
+      <p>
+        &copy; <span id="displayYear"></span> Blood Donor System. All Rights
+        Reserved. <br class="d-sm-none" />
+        <br />
+        <small>Designed with care for our community.</small>
+      </p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // JavaScript to display the current year in the footer
+  // This script should ideally be in your global JS file,
+  // but placing it here for self-contained example.
+  document.addEventListener("DOMContentLoaded", function () {
+    var yearSpan = document.getElementById("displayYear");
+    if (yearSpan) {
+      yearSpan.innerHTML = new Date().getFullYear();
+    }
+  });
+</script>

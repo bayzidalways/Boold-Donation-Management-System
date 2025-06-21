@@ -1,0 +1,172 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>BBDMS - Login</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
+    />
+
+    <!-- Fonts and Icons -->
+    <script src="{% static 'assets/js/plugin/webfont/webfont.min.js' %}"></script>
+    <script>
+      WebFont.load({
+        google: { families: ["Public Sans:300,400,500,600,700"] },
+        custom: {
+          families: [
+            "Font Awesome 5 Solid",
+            "Font Awesome 5 Regular",
+            "Font Awesome 5 Brands",
+            "simple-line-icons",
+          ],
+          urls: ["{% static 'assets/css/fonts.min.css' %}"],
+        },
+        active: function () {
+          sessionStorage.fonts = true;
+        },
+      });
+    </script>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/css/plugins.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/css/kaiadmin.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/css/demo.css' %}" />
+
+    <!-- Custom Styles -->
+    <style>
+      body {
+        background-color: #f8f9fa;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+      }
+      .login-card {
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        padding: 30px;
+        max-width: 420px;
+        width: 100%;
+      }
+      .login-card .card-title {
+        color: #d32f2f;
+        font-size: 1.8rem;
+        font-weight: 600;
+        margin-bottom: 5px;
+        text-align: center;
+      }
+      .login-card .card-subtitle {
+        font-size: 0.95rem;
+        color: #777;
+        text-align: center;
+        margin-bottom: 20px;
+      }
+      .login-card .form-control {
+        padding: 12px 15px;
+        border-radius: 5px;
+        border: 1px solid #ced4da;
+        margin-bottom: 15px;
+      }
+      .login-card .form-control:focus {
+        border-color: #d32f2f;
+        box-shadow: 0 0 0 0.2rem rgba(211, 47, 47, 0.25);
+      }
+      .login-card .btn-login {
+        background-color: #d32f2f;
+        color: #fff;
+        padding: 12px;
+        font-weight: 600;
+        width: 100%;
+        border: none;
+        border-radius: 5px;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+      }
+      .login-card .btn-login:hover {
+        background-color: #a72020;
+        transform: translateY(-2px);
+      }
+      .login-card a {
+        color: #007bff;
+        text-decoration: none;
+        font-size: 0.9rem;
+        display: block;
+        text-align: center;
+        margin-top: 10px;
+      }
+      .login-card a:hover {
+        text-decoration: underline;
+        color: #0056b3;
+      }
+      .alert {
+        font-size: 0.9rem;
+        padding: 10px 15px;
+        border-radius: 5px;
+        margin-bottom: 20px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="login-card">
+      <h4 class="card-title">Login</h4>
+      <div class="card-subtitle">Access to our dashboard</div>
+
+      <!-- Django Messages -->
+      {% if messages %} {% for message in messages %}
+      <div
+        class="alert alert-{{ message.tags }} alert-dismissible fade show"
+        role="alert"
+      >
+        {{ message }}
+        <button
+          type="button"
+          class="close"
+          data-dismiss="alert"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      {% endfor %} {% endif %}
+
+      <!-- Login Form -->
+      <form method="POST" action="{% url 'doLogin' %}">
+        {% csrf_token %}
+        <input
+          type="text"
+          name="username"
+          class="form-control"
+          placeholder="Your Username"
+          required
+        />
+        <input
+          type="password"
+          name="password"
+          class="form-control"
+          placeholder="Password"
+          required
+        />
+        <button type="submit" class="btn btn-login">Login</button>
+
+        <a href="{% url 'donorsignup' %}">
+          <i class="fa fa-user-plus"></i> Donor Signup
+        </a>
+        <a href="{% url 'index' %}"> <i class="fa fa-home"></i> Home Page </a>
+      </form>
+    </div>
+
+    <!-- Core JS Files -->
+    <script src="{% static 'assets/js/core/jquery-3.7.1.min.js' %}"></script>
+    <script src="{% static 'assets/js/core/popper.min.js' %}"></script>
+    <script src="{% static 'assets/js/core/bootstrap.min.js' %}"></script>
+
+    <!-- Optional Plugins -->
+    <script src="{% static 'assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js' %}"></script>
+    <script src="{% static 'assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js' %}"></script>
+    <script src="{% static 'assets/js/kaiadmin.min.js' %}"></script>
+  </body>
+</html>

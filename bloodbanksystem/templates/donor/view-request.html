@@ -1,0 +1,78 @@
+{% extends 'base.html' %} {% block content %}
+
+<div class="page-inner">
+  <div class="page-header">
+    <h3 class="fw-bold mb-3">Blood Request Details</h3>
+    <ul class="breadcrumbs mb-3">
+      <li class="nav-home">
+        <a href="#"><i class="icon-home"></i></a>
+      </li>
+      <li class="separator"><i class="icon-arrow-right"></i></li>
+      <li class="nav-item">Blood Request Details</li>
+    </ul>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">Blood Request Details</h4>
+        </div>
+        <div class="card-body">
+          {% if messages %} {% for message in messages %}
+          <div
+            class="alert alert-{{ message.tags }} alert-dismissible fade show"
+            role="alert"
+          >
+            {{ message }}
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="alert"
+              aria-label="Close"
+            ></button>
+          </div>
+          {% endfor %} {% endif %}
+
+          <div class="table-responsive">
+            {% if bloodreq %}
+            <table
+              id="basic-datatables"
+              class="display table table-striped table-hover"
+            >
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Name</th>
+                  <th>Mobile Number</th>
+                  <th>Email</th>
+                  <th>Blood Require For</th>
+                  <th>Message</th>
+                  <th>Apply Date</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for i in bloodreq %}
+                <tr>
+                  <td>{{ forloop.counter }}</td>
+                  <td>{{ i.fullname }}</td>
+                  <td>{{ i.mobno }}</td>
+                  <td>{{ i.email }}</td>
+                  <td>{{ i.requirer }}</td>
+                  <td>{{ i.message }}</td>
+                  <td>{{ i.regdate_at }}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+            {% else %}
+            <p class="text-danger fs-5">No Request Received</p>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,256 @@
+{% extends 'userbase.html' %} {% load static %} {% block content %}
+<style>
+  /* Custom styles for the About Us page */
+  .about_hero_section {
+    background: linear-gradient(rgba(211, 47, 47, 0.8), rgba(211, 47, 47, 0.7)),
+      url("{% static 'assets1/images/about_hero_banner.jpg' %}"); /* Replace with a suitable hero image */
+    background-size: cover;
+    background-position: center center;
+    padding: 80px 0;
+    color: #fff;
+    text-align: center;
+  }
+  .about_hero_section h1 {
+    font-size: 3.5rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  }
+  .about_hero_section h1 span {
+    color: #ffc107; /* Accent color for "Lifesaving Network" */
+  }
+  .about_hero_section .lead {
+    font-size: 1.3rem;
+    margin-bottom: 30px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .content_section {
+    padding: 60px 0;
+  }
+  .content_section .heading_container {
+    margin-bottom: 40px;
+    text-align: center;
+  }
+  .content_section .heading_container h2 {
+    font-size: 2.8rem;
+    font-weight: bold;
+    color: #333;
+  }
+  .content_section .heading_container h2 span {
+    color: #d32f2f; /* Primary red color */
+  }
+  .content_section .detail-box p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: #555;
+  }
+  .content_section .img-box {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  .content_section .img-box img {
+    border-radius: 10px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    max-width: 100%;
+    height: auto;
+  }
+
+  .mission_vision_section {
+    background-color: #f8f9fa; /* Light grey background */
+  }
+
+  .icon-box {
+    text-align: center;
+    padding: 20px;
+  }
+  .icon-box i {
+    font-size: 3rem; /* Assuming you use an icon font like Font Awesome */
+    color: #d32f2f;
+    margin-bottom: 15px;
+  }
+  .icon-box h4 {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  .icon-box p {
+    font-size: 1rem;
+    color: #555;
+  }
+
+  .cta_section {
+    background-color: #d32f2f;
+    color: #fff;
+    text-align: center;
+  }
+  .cta_section h3 {
+    font-size: 2rem;
+    font-weight: bold;
+  }
+  .cta_section .btn-light {
+    font-weight: bold;
+  }
+</style>
+
+<section class="about_hero_section">
+  <div class="container">
+    <h1>About Our <span>Lifesaving Network</span></h1>
+    <p class="lead">
+      We are dedicated to bridging the critical gap between voluntary blood
+      donors and those in urgent need. Our platform is more than just a system;
+      it's a community built on compassion and the shared goal of saving lives.
+    </p>
+  </div>
+</section>
+
+<section class="content_section layout_padding">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-md-6">
+        <div class="img-box">
+          <img
+            src="{% static 'assets1/images/our_platform_image.jpg' %}"
+            alt="Our Platform in Action"
+          />
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="detail-box">
+          <div class="heading_container text-left mb-3">
+            <h2>What <span>We Do</span></h2>
+          </div>
+          <p>
+            Our Blood Donor System is a user-friendly online platform designed
+            to efficiently connect blood donors with patients in need. We
+            facilitate easy registration for donors, provide a quick and secure
+            search for recipients, and aim to ensure that life-saving blood is
+            available when and where it's needed most.
+          </p>
+          <p>
+            Founded on the principle that every drop counts, we leverage
+            technology to streamline the donation process, raise awareness about
+            the constant need for blood, and foster a culture of regular,
+            voluntary blood donation.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="content_section mission_vision_section layout_padding">
+  <div class="container">
+    <div class="heading_container">
+      <h2>Our Core <span>Purpose</span></h2>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="icon-box">
+          <img
+            src="{% static 'assets1/icons/mission_icon.png' %}"
+            alt="Mission Icon"
+            style="width: 64px; height: 64px; margin-bottom: 15px"
+          />
+          <h4>Our Mission</h4>
+          <p>
+            To create a seamless and accessible network connecting voluntary
+            blood donors with individuals requiring transfusions, ensuring
+            timely access to safe blood and saving precious lives through
+            community effort and technology.
+          </p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="icon-box">
+          <img
+            src="{% static 'assets1/icons/vision_icon.png' %}"
+            alt="Vision Icon"
+            style="width: 64px; height: 64px; margin-bottom: 15px"
+          />
+          <h4>Our Vision</h4>
+          <p>
+            A future where no one suffers due to a lack of safe blood. We
+            envision a nation united by the spirit of voluntary donation, where
+            every eligible individual contributes to a robust and responsive
+            blood supply system.
+          </p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="icon-box">
+          <img
+            src="{% static 'assets1/icons/impact_icon.png' %}"
+            alt="Impact Icon"
+            style="width: 64px; height: 64px; margin-bottom: 15px"
+          />
+          <h4>Why It Matters</h4>
+          <p>
+            Every two seconds, someone in the country needs blood. From accident
+            victims to patients undergoing surgery or battling chronic
+            illnesses, the demand is constant. Your single donation can help
+            save up to three lives.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="content_section layout_padding">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-md-6 order-md-2">
+        <div class="img-box">
+          <img
+            src="{% static 'assets1/images/donation_impact.jpg' %}"
+            alt="Impact of Blood Donation"
+          />
+        </div>
+      </div>
+      <div class="col-md-6 order-md-1">
+        <div class="detail-box">
+          <div class="heading_container text-left mb-3">
+            <h2>The Ripple Effect of <span>Your Donation</span></h2>
+          </div>
+          <p>
+            Becoming a blood donor is a profound act of kindness. It's a simple
+            process, yet its impact resonates deeply, offering hope and a second
+            chance at life to countless individuals and their families. Whether
+            it's for a planned surgery, an emergency, or ongoing treatment, your
+            contribution is invaluable.
+          </p>
+          <p>
+            Our platform empowers you to be part of this life-affirming journey.
+            We provide information, support, and the means to connect with those
+            who are counting on your generosity.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="content_section cta_section layout_padding">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h3>Be a Beacon of Hope. Your Contribution Matters.</h3>
+        <p class="my-4">
+          Join our community of lifesavers today. Register as a donor or help
+          spread the word about the importance of voluntary blood donation.
+        </p>
+        <a href="{% url 'donorsignup' %}" class="btn btn-light btn-lg mr-2"
+          >Register as a Donor</a
+        >
+        <a href="{% url 'search-donor' %}" class="btn btn-outline-light btn-lg"
+          >Find a Donor</a
+        >
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
