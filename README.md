@@ -23,7 +23,7 @@
 
 ### Screenshot
 
-![](.//static/assets/img/banner.png)
+![](./bloodbanksystem/static/assets/img/banner.png)
 
 ### Links
 
